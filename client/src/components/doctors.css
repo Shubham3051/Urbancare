@@ -1,0 +1,104 @@
+.doctors-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px;
+  padding: 30px;
+  margin-left: 260px; /* Push content right to avoid sidebar overlap */
+  max-width: calc(100% - 260px); /* Ensure it does not overlap with sidebar */
+}
+
+.doctor-card {
+  background: white;
+  width: 100%;
+  max-width: 250px;
+  height: 350px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+}
+
+.doctor-card:hover {
+  transform: translateY(-8px);
+}
+
+.card-header {
+  position: relative;
+  background: linear-gradient(to bottom, #6a11cb, #2575fc);
+  width: 100%;
+  height: 100px;
+  border-bottom-left-radius: 50% 40px;
+  border-bottom-right-radius: 50% 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doctor-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  top: 30px;
+  border: 3px solid white;
+}
+
+.card-body {
+  text-align: center;
+  padding: 50px 15px 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h3 {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+p {
+  color: black;
+  font-size: 12px;
+}
+
+.appointment-btn {
+  background: #2575fc;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 12px;
+  margin-top: auto;
+}
+
+.appointment-btn:hover {
+  background: #1a5ab8;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .doctors-container {
+    margin-left: 220px;
+    max-width: calc(100% - 220px);
+  }
+}
+
+@media (max-width: 768px) {
+  .doctors-container {
+    margin-left: 0; /* Sidebar might collapse, so remove margin */
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .doctors-container {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+  }
+}

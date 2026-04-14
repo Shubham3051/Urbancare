@@ -1,0 +1,257 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* BODY */
+.signin-body,
+.signin-html {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* MAIN CONTAINER */
+.signin-container {
+  width: 100%;
+  min-height: 100vh;
+  background: url('../../assets/background.png') no-repeat right center/cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* OVERLAY */
+.signin-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #2e7d32 10%, rgba(69,126,66,0.5) 70%, transparent);
+  z-index: 0;
+}
+
+/* NAVBAR */
+.signin-navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 15px 5%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.signin-logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.signin-nav a {
+  margin-left: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+/* CONTENT TEXT */
+.signin-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px 5%;
+  max-width: 600px;
+}
+
+.signin-content h1 {
+  font-size: clamp(28px, 5vw, 48px);
+}
+
+.signin-content p {
+  font-size: 14px;
+}
+
+/* OUTER BOX */
+.outer-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  z-index: 2;
+}
+
+/* INNER (LOGIN SWITCH BUTTONS) */
+.inner {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+}
+
+.inner button {
+  width: 100%;
+  max-width: 250px;
+  padding: 12px;
+  margin: 10px auto;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background: #12b550;
+  color: white;
+  cursor: pointer;
+}
+
+.inner button:hover {
+  background: #0b4e25;
+}
+
+/* FORM CONTAINER */
+.container {
+  width: 90%;
+  max-width: 768px;
+  min-height: 480px;
+  background: white;
+  border-radius: 20px;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* FORMS */
+.container form {
+  padding: 20px;
+}
+
+/* INPUT */
+.container input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: none;
+  background: #eee;
+}
+
+/* BUTTON */
+.container button {
+  width: 100%;
+  padding: 12px;
+  background: #12b550;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+}
+
+.container button:hover {
+  background: #0b4e25;
+}
+
+/* SIGN IN / SIGN UP */
+.sign-in,
+.sign-up {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  transition: 0.6s;
+}
+
+.sign-in {
+  left: 0;
+  z-index: 2;
+}
+
+.sign-up {
+  left: 0;
+  opacity: 0;
+}
+
+.container.active .sign-in {
+  transform: translateX(100%);
+}
+
+.container.active .sign-up {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+/* TOGGLE */
+.toogle-container {
+  position: absolute;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+}
+
+.toogle {
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(to right, #1ca517, #68c765);
+  position: relative;
+  left: -100%;
+  transition: 0.6s;
+}
+
+.container.active .toogle {
+  transform: translateX(50%);
+}
+
+/* ===================== */
+/* 📱 MOBILE RESPONSIVE */
+/* ===================== */
+@media (max-width: 768px) {
+
+  .signin-content {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .signin-navbar {
+    padding: 10px 20px;
+  }
+
+  .inner {
+    max-width: 90%;
+  }
+
+  .container {
+    width: 95%;
+    min-height: auto;
+  }
+
+  .sign-in,
+  .sign-up {
+    width: 100%;
+    position: relative;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .toogle-container {
+    display: none;
+  }
+}
+
+/* EXTRA SMALL DEVICES */
+@media (max-width: 480px) {
+
+  .signin-content h1 {
+    font-size: 24px;
+  }
+
+  .inner button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .container button {
+    padding: 10px;
+  }
+}
