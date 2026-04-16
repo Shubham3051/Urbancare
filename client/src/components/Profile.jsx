@@ -16,14 +16,70 @@ const Profile = () => {
   const [formData, setFormData] = useState({ ...defaultData });
   const [savedData, setSavedData] = useState(null);
 
-  // Load saved data from localStorage on component mount
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // Load profile data from API on component mount, fallback to localStorage
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("savedData"));
-    console.log("useEffect: savedData from localStorage:", saved);
-    if (saved) {
-      setSavedData(saved);
-      setFormData(saved); // Initialize formData with saved data
-    }
+    const fetchProfile = async () => {
+      setLoading(true);
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            // No token, check localStorage as fallback
+            const saved = JSON.parse(localStorage.getItem("savedData"));
+            if (saved) {
+              setSavedData(saved);
+              setFormData(saved);
+            }
+            setLoading(false);
+            return;
+        }
+
+        const response = await fetch("http://localhost:5000/api/profile", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile");
+        }
+
+        const data = await response.json();
+        const apiData = {
+            name: data.name || "",
+            age: data.age || "",
+            bloodGroup: data.bloodGroup || "",
+            dob: "", // Backend might not have DOB
+            location: "", // Backend might not have location
+            image: null
+        };
+        
+        // If we have some extra saved fields in local storage like DOB/Location, merge them
+        const saved = JSON.parse(localStorage.getItem("savedData")) || {};
+        const finalData = { ...apiData, dob: saved.dob || "", location: saved.location || "", image: saved.image || null };
+        
+        setSavedData(finalData);
+        setFormData(finalData);
+        
+      } catch (err) {
+        console.error("API error:", err);
+        const saved = JSON.parse(localStorage.getItem("savedData"));
+        if (saved) {
+          setSavedData(saved);
+          setFormData(saved);
+        } else {
+            setError(err.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
   }, []);
 
   // Handle image upload

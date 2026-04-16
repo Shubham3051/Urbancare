@@ -1,6 +1,3 @@
-
-
-
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
@@ -24,6 +21,7 @@ import Prescription from "./Models/Prescription.js";
 
  import appointmentrouter from "./Routes/appointment.route.js";
 import jwt from "jsonwebtoken";
+import UserModel from "./Models/user.js";
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -138,18 +136,9 @@ app.get("/prescriptions/:chatId", async (req, res) => {
   }
 });
 
-// API Routes
-app.use("/api", doctorRoutes);
-app.use("/api/auth", authRoutes);
-app.use('/chat', chatrouter);
-app.use('/ai', airouter);
-app.use('/message',messagerouter);
-app.use('/appointment',appointmentrouter);
-const router = express.Router();
-
-router.get("/profile", authMiddleware, async (req, res) => {
+app.get("/api/profile", authMiddleware, async (req, res) => {
   try {
-      const patient = await Patient.findById(req.user.id);
+      const patient = await UserModel.findById(req.user.id);
       if (!patient) return res.status(404).json({ message: "Patient not found" });
 
       res.json({
@@ -162,6 +151,15 @@ router.get("/profile", authMiddleware, async (req, res) => {
       res.status(500).json({ message: "Internal Server Error", error: error.message });
   }
 });
+
+// API Routes
+app.use("/api", doctorRoutes);
+app.use("/api/auth", authRoutes);
+app.use('/chat', chatrouter);
+app.use('/ai', airouter);
+app.use('/message',messagerouter);
+app.use('/appointment',appointmentrouter);
+
 
 // Global Error Handling Middleware
 app.use((err, req, res, next) => {

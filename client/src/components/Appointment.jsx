@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { apiClient } from "../../axios/axios.js";
 
@@ -36,10 +36,23 @@ const Appointment = () => {
 
       const { availableSlots, bookedSlots } = response.data;
 
-      const updatedSchedule = [
+      const allSlotsOrder = [
+        "9:00 - 9:20", "9:20 - 9:40", "9:40 - 10:00", "10:00 - 10:20",
+        "10:20 - 10:40", "10:40 - 11:00", "11:00 - 11:20", "11:20 - 11:40",
+        "11:40 - 12:00", "12:00 - 12:20", "12:20 - 12:40", "12:40 - 1:00",
+        "2:00 - 2:20", "2:20 - 2:40", "2:40 - 3:00", "3:00 - 3:20",
+        "3:20 - 3:40", "3:40 - 4:00", "4:00 - 4:20", "4:20 - 4:40",
+        "4:40 - 5:00"
+      ];
+
+      const rawSchedule = [
         ...availableSlots.map((time) => ({ time, status: "available" })),
         ...bookedSlots.map((time) => ({ time, status: "booked" }))
       ];
+
+      const updatedSchedule = rawSchedule.sort((a, b) => {
+        return allSlotsOrder.indexOf(a.time) - allSlotsOrder.indexOf(b.time);
+      });
 
       setSchedule(updatedSchedule);
     } catch (error) {
