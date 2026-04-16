@@ -19,7 +19,7 @@ import chat from "./Models/Chat.model.js";
 import messagerouter from "./Routes/message.routes.js";
 import Prescription from "./Models/Prescription.js";
 
- import appointmentrouter from "./Routes/appointment.route.js";
+import appointmentrouter from "./Routes/appointment.route.js";
 import jwt from "jsonwebtoken";
 import UserModel from "./Models/user.js";
 dotenv.config();

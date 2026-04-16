@@ -112,19 +112,19 @@ export const getDoctorById = async (req, res) => {
 
 
 
-// ✅ Add Doctor Controller
+// Add Doctor Controller
 export const addDoctor = async (req, res) => {
   try {
-      console.log("🔹 Received Data from Frontend:", req.body); // ✅ Debugging
+      console.log("🔹 Received Data from Frontend:", req.body); // Debugging
 
       const { name, experience, licence, specialization } = req.body;
 
-      // ✅ Check if all required fields are present
+      // Check if all required fields are present
       if (!name || !experience || !licence || !specialization) {
           return res.status(400).json({ success: false, message: "All fields are required" });
       }
 
-      // ✅ Ensure correct data types (optional)
+      //  Ensure correct data types (optional)
       // if (typeof experience !== "number") {
       //     return res.status(400).json({ success: false, message: "Experience must be a number" });
       // }
@@ -132,10 +132,10 @@ export const addDoctor = async (req, res) => {
       const newDoctor = new Doctor({ name, experience, licence, specialization });
       await newDoctor.save();
 
-      console.log("✅ Doctor added successfully:", newDoctor); // ✅ Debugging log
+      console.log(" Doctor added successfully:", newDoctor); //  Debugging log
       res.status(201).json({ success: true, message: "Doctor added successfully", doctor: newDoctor });
   } catch (error) {
-      console.error("❌ Error in Backend:", error); // ✅ Debugging log
+      console.error(" Error in Backend:", error); // Debugging log
       res.status(500).json({ success: false, message: "Server Error", error: error.message });
   }
 };

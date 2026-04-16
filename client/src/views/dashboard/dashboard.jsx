@@ -301,7 +301,7 @@ doctors.map((row, index) => (
         <div>
           <h1 className="text-2xl font-semibold text-[#616161]">
             Hello,{" "}
-            <span className="text-[#212181]">{user?.username || "Shubham"}</span>
+            <span className="text-[#212181]">{user?.userna}</span>
           </h1>
           <p className="text-[#616161]">Have a nice day at work</p>
         </div>

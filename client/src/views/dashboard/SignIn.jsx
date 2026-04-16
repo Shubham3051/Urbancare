@@ -148,7 +148,9 @@ const SignIn = () => {
               fugit, sed quia consequuntur magni dolores eos qui ratione
               voluptatem sequi nesciunt.
             </p> */}
-            <button className="signin-appointment-btn">
+            <button
+            onClick={() => handleRoleSelection("patient") }
+            className="signin-appointment-btn">
               Get an Appointment
             </button>
           </div>

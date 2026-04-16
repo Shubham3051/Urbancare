@@ -11,7 +11,7 @@ function Profile() {
     let doctor={
         Image:"https://imgs.search.brave.com/LcHTTXrctnmxLNGhNUsTwhdDkLHfyXNC3I9rGFHoLpk/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvOTIz/NDcyODcvcGhvdG8v/cG9ydHJhaXQtb2Yt/YS1kb2N0b3IuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPTR2/bm1MX1VyRUZ3dHhx/dVR0Mk5hRlpwQlp4/LUlXN0JQSHVaallJ/ZFh5TWM9",
         name:"Doctor Name",
-        email:"ohriparas2005@gmail.com",
+        email:"Shubham@gmail.com",
         phone:"1234567890",
         dob:"September,1978",
         experience:"20 Years",
